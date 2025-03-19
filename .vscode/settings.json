@@ -1,0 +1,33 @@
+{
+    "files.eol": "\n",
+    "workbench.editor.labelFormat": "short", // quite relevant due the file naming conventions of this project towards components and their view models
+    "files.readonlyInclude": {
+        "/**/build/**": true,
+        "/**/.next/**": true,
+        "/**/node_modules/**": true,
+        "/**/pnpm.yml": true,
+    },
+    "[html]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.detectIndentation": false,
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[typescript]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[typescriptreact]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "eslint.format.enable": true,
+    "eslint.lintTask.enable": true,
+}
