@@ -3,9 +3,10 @@
     "workbench.editor.labelFormat": "short", // quite relevant due the file naming conventions of this project towards components and their view models
     "files.readonlyInclude": {
         "/**/build/**": true,
-        "/**/.next/**": true,
-        "/**/node_modules/**": true,
-        "/**/pnpm.yml": true,
+        "node_modules/**": true,
+        "pnpm-lock.yaml": true,
+        ".next/**": true,
+        "next-env.d.ts": true
     },
     "[html]": {
         "editor.insertSpaces": true,
@@ -17,15 +18,21 @@
         "editor.insertSpaces": true,
         "editor.tabSize": 2,
         "editor.detectIndentation": false,
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "always",
+            "source.organizeImports": "always"
+        }
     },
     "[typescriptreact]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 2,
         "editor.detectIndentation": false,
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "always",
+            "source.organizeImports": "always"
+        }
     },
     "typescript.preferences.importModuleSpecifier": "non-relative",
     "eslint.format.enable": true,
