@@ -1,9 +1,9 @@
 "use client";
 
 import { Button, Card, Form, Input } from "antd";
-import FormItem from "antd/es/form/FormItem"; // Import Form.Item directly
-import TypographyText from "antd/es/typography/Text"; // Import Typography.Text directly
-import TypographyTitle from "antd/es/typography/Title"; // Import Typography.Title directly
+import FormItem from "antd/es/form/FormItem";
+import TypographyText from "antd/es/typography/Text";
+import TypographyTitle from "antd/es/typography/Title";
 import { debounce } from "lodash";
 import { useState } from "react";
 
@@ -13,7 +13,7 @@ export default function UrlShortenerForm() {
 
   const fakeShortenUrl = debounce((longUrl: string) => {
     // Simulate a backend response
-    return `https://short.ly/${btoa(longUrl).slice(0, 8)}`;
+    return `https://my.short.ly/${btoa(longUrl).slice(0, 8)}`;
   }, 300);
 
   async function handleSubmit(values: { longUrl: string }) {
