@@ -7,13 +7,13 @@ interface IAnalyticsURLClickCreateRequest {
   shortened_url_mapping: Pick<ShortenedUrlMapping, "short_code">;
 }
 
-export abstract class AnalyticsUrlClicksRepository {
+export abstract class AnalyticsUrlClickRepository {
   static async registerNewClick(shortCode: string): Promise<void> {
     await backendApiAxiosInstance.post(
-      [BASE_REPOSITORY_URL, shortCode].join("/"),
+      BASE_REPOSITORY_URL,
       {
-        shortened_url_mapping: {
-          short_code: shortCode
+        shortened_url_mapping: { // eslint-disable-line camelcase
+          short_code: shortCode // eslint-disable-line camelcase
         }
       } as IAnalyticsURLClickCreateRequest
     );

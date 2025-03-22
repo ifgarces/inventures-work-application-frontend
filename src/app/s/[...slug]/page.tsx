@@ -1,16 +1,16 @@
 "use client";
 
-import { AnalyticsUrlClicksService } from "@/services/AnalyticsUrlClicksService";
+import { AnalyticsUrlClickService } from "@/services/AnalyticsUrlClickService";
 import { UrlShortenerService } from "@/services/UrlShortenerService";
 import { Alert, Spin } from "antd";
 import { useParams } from "next/navigation";
 import { useEffect, useMemo } from "react";
 
 async function redirectToOriginalUrl(shortCode :string) {
-  await AnalyticsUrlClicksService.registerNewClick(shortCode);
+  await AnalyticsUrlClickService.registerNewClick(shortCode);
 
   const originalUrl :URL = await UrlShortenerService.getOriginalUrl(shortCode);
-  // window.location.assign(originalUrl);
+  window.location.assign(originalUrl);
 }
 
 export default function ShortenedUrlCatchAllPage() {
