@@ -1,22 +1,24 @@
 "use client";
 
+import { AnalyticsUrlClicksService } from "@/services/AnalyticsUrlClicksService";
 import { UrlShortenerService } from "@/services/UrlShortenerService";
-import { Alert } from "antd";
+import { Alert, Spin } from "antd";
 import { useParams } from "next/navigation";
 import { useEffect, useMemo } from "react";
 
 async function redirectToOriginalUrl(shortCode :string) {
+  await AnalyticsUrlClicksService.registerNewClick(shortCode);
+
   const originalUrl :URL = await UrlShortenerService.getOriginalUrl(shortCode);
-  debugger;
-  window.location.assign(originalUrl);
+  // window.location.assign(originalUrl);
 }
 
 export default function ShortenedUrlCatchAllPage() {
-  const params = useParams();
+  const pathParams = useParams();
 
   const firstSlug :string | undefined = useMemo(() => {
-    return (params.slug === undefined) ? undefined : params.slug[0];
-  }, [params.slug]);
+    return (pathParams.slug === undefined) ? undefined : pathParams.slug[0];
+  }, [pathParams.slug]);
 
   useEffect(() => {
     if (firstSlug === undefined) return;
@@ -30,6 +32,7 @@ export default function ShortenedUrlCatchAllPage() {
       description={`Redirecting to original URL for short code ${firstSlug}...`}
       type="info"
       showIcon
+      icon={<Spin size="large" />}
       closable
       style={{ padding: "20px" }} />
   );
