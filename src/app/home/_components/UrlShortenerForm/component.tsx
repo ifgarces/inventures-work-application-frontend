@@ -13,7 +13,7 @@ import { useUrlShortenerFormViewModel } from "./view-model";
 export default function UrlShortenerForm() {
   const [antdForm] = Form.useForm<IFormFields>();
 
-  const { shortenedUrl, onFormSubmit } = useUrlShortenerFormViewModel();
+  const { shortenedUrlString, onFormSubmit } = useUrlShortenerFormViewModel();
 
   return (
     <Card title="URL Shortener" style={{ maxWidth: 600, margin: "2rem auto" }}>
@@ -35,12 +35,12 @@ export default function UrlShortenerForm() {
       </Form>
 
       {
-        !_.isEmpty(shortenedUrl) && (
+        !_.isEmpty(shortenedUrlString) && (
           <div style={{ marginTop: "2rem", textAlign: "center" }}>
             <TypographyTitle level={4}>Shortened URL</TypographyTitle>
-            <TypographyText copyable={{ text: shortenedUrl }}>
-              <a href={shortenedUrl} target="_blank" rel="noopener noreferrer">
-                {shortenedUrl}
+            <TypographyText copyable={{ text: shortenedUrlString }}>
+              <a href={shortenedUrlString} target="_blank" rel="noopener noreferrer">
+                {shortenedUrlString}
               </a>
             </TypographyText>
           </div>

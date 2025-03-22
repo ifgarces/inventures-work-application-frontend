@@ -13,10 +13,15 @@ const axiosInstance = axios.create({
 });
 
 export abstract class UrlShortenerRepository {
-  static async shortenUrl(targetUrl: string): Promise<ShortenedUrlMapping> {
+  static async newShortenedUrl(targetUrl: string): Promise<ShortenedUrlMapping> {
     const rawResponse = await axiosInstance.post(
       "/", { target_url: targetUrl }
     );
-    return rawResponse.data as ShortenedUrlMapping;
+    return rawResponse.data as ShortenedUrlMapping; //! warning: missing safe type check
+  }
+
+  static async getOriginalUrl(shortCode: string): Promise<string> {
+    const rawResponse = await axiosInstance.get(`/${shortCode}`);
+    return rawResponse.data.target_url; //! warning: missing safe type check
   }
 }
