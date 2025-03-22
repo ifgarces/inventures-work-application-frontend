@@ -1,24 +1,36 @@
 "use client";
 
+import { UrlShortenerService } from "@/services/UrlShortenerService";
 import { Alert } from "antd";
 import { useParams } from "next/navigation";
+import { useEffect, useMemo } from "react";
+
+async function redirectToOriginalUrl(shortCode :string) {
+  const originalUrl :URL = await UrlShortenerService.getOriginalUrl(shortCode);
+  debugger;
+  window.location.assign(originalUrl);
+}
 
 export default function ShortenedUrlCatchAllPage() {
   const params = useParams();
-  const slug = params?.slug;
+
+  const firstSlug :string | undefined = useMemo(() => {
+    return (params.slug === undefined) ? undefined : params.slug[0];
+  }, [params.slug]);
+
+  useEffect(() => {
+    if (firstSlug === undefined) return;
+
+    redirectToOriginalUrl(firstSlug);
+  }, [firstSlug]);
 
   return (
-    <div style={{ padding: "2rem", textAlign: "center" }}>
-      <Alert
-        message="WIP"
-        type="warning"
-        showIcon
-        closable
-        style={{ marginBottom: "1rem" }} />
-      <h1>Shortened URL</h1>
-      <p>
-        You accessed: <strong>{Array.isArray(slug) ? slug.join("/") : slug}</strong>
-      </p>
-    </div>
+    <Alert
+      message="Redirecting"
+      description={`Redirecting to original URL for short code ${firstSlug}...`}
+      type="info"
+      showIcon
+      closable
+      style={{ padding: "20px" }} />
   );
 }
